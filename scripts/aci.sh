@@ -2,15 +2,10 @@
 
 echo "Launching ACI Instance..."
 
-resource_group="$1"
+resource_group="your-resource-group-here"
 
 {
-	az container create --resource-group $resource_group --template-file aci-template.json
-	IP=$(sed -e 's/^"//' -e 's/"$//' <<< `az container show --name demo-aci --resource-group -yours goes here- | jq .ipAddress.ip`)
+    az container create --resource-group $resource_group --name functions-demo --image josephmuli/http-trigger-func:1.0 --ip-address public
+} &> /dev/null
 
-	STATE=`az container show --name demo-aci --resource-group -yours goes here- | jq .state`
-	while [ "$STATE" != \""Running\"" ]; do
-		STATE=`az container show --name demo-aci --resource-group -yours goes here- | jq .state`
-	done
-}  &> /dev/null
-curl $IP
+echo "done"

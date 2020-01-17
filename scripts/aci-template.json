@@ -21,7 +21,7 @@
     },
     "resources": [
       {
-        "name": "functions-example",
+        "name": "functions-aci-example",
         "type": "Microsoft.ContainerInstance/containerGroups",
         "apiVersion": "2018-10-01",
         "location": "[resourceGroup().location]",
@@ -55,7 +55,7 @@
                 "port": "80"
               }
             ],
-            "dnsNameLabel": "your-dns-label-here"
+            "dnsNameLabel": "functions-demo"
           }
         }
       }
