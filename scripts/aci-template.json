@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters":{
+        "restartPolicy": {
+            "type": "string",
+            "defaultValue": "always",
+            "metadata": {
+              "description": "The behavior of Azure runtime if container has stopped."
+            },
+            "allowedValues": [
+              "never",
+              "always",
+              "onfailure"
+            ]
+          }
+    },
+    "variables": {
+      "container1name": "container-name",
+      "container1image": "josephmuli/http-trigger-func:1.0"
+    },
+    "resources": [
+      {
+        "name": "functions-example",
+        "type": "Microsoft.ContainerInstance/containerGroups",
+        "apiVersion": "2018-10-01",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "containers": [
+            {
+              "name": "[variables('container1name')]",
+              "properties": {
+                "image": "[variables('container1image')]",
+                "resources": {
+                  "requests": {
+                    "cpu": 1,
+                    "memoryInGb": 1.5
+                  }
+                },
+                "ports": [
+                  {
+                    "port": 80
+                  }
+                ]
+              }
+            }
+          ],
+          "osType": "Linux",
+          "restartPolicy": "[parameters('restartPolicy')]",
+          "ipAddress": {
+            "type": "Public",
+            "ports": [
+              {
+                "protocol": "tcp",
+                "port": "80"
+              }
+            ],
+            "dnsNameLabel": "your-dns-label-here"
+          }
+        }
+      }
+    ]
+  }
