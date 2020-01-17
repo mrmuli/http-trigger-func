@@ -41,3 +41,8 @@ venv.bak/
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Azure Functions localsettings file
+local.settings.json
+
+azure-functions-core-tools/
