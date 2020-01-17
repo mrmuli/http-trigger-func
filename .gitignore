@@ -45,4 +45,4 @@ __pycache__/
 # Azure Functions localsettings file
 local.settings.json
 
-azure-functions-core-tools/.telemetry
+azure-functions-core-tools/*
