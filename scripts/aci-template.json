@@ -16,7 +16,7 @@
           }
     },
     "variables": {
-      "container1name": "container-name",
+      "container1name": "functions-demo",
       "container1image": "josephmuli/http-trigger-func:1.0"
     },
     "resources": [
