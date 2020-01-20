@@ -7,9 +7,12 @@ echo "deleting resources"
 resource_group="redemption-song"
 
 aci_flush(){
-    az container delete --name functions-demo --resource-group $resource_group --no-wait
 
-    az group deployment delete --name functions-demo  --resource-group $resource_group --no-wait
+    az container stop --name functions-demo --resource-group $resource_group
+
+    az container delete --name functions-demo --resource-group $resource_group -y
+
+    # az group deployment delete --name functions-demo  --resource-group $resource_group --no-wait
 }
 
 local_flush(){
