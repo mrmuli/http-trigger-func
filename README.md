@@ -21,9 +21,41 @@
 
 2. Change dir into `scripts/`
 
+3. Update variables
+   - resource_group : Your Azure resource group name in aci.sh
+
 3. Running `./bench.sh` will print results after setting up and running a function locally and on Azure container instances.
 
 
 
 ### Note  
-When running the benchmark, you'll have to drop the image and containers after each run, to encourage accurate results.
+- When running the benchmark, you'll have to drop the image and containers after each run, to encourage accurate results.
+- The `--no-wait` flag has been added to all `az create` commands and has an impact on the results. The flag prevents wait for the long-running operation to finish. This however, doesn't have the container start faster. There's still an overhead of 10-20+ seconds.
+
+
+Sample results after running `./bench`
+
+`With --no-wait`
+```
+$ ./bench.sh
+Launching Docker Container...
+Launching ACI Instance...
+done
+---------------------------------
+results:
+Local Docker Environment - 5 seconds
+ACI Environment - 2 seconds
+
+```
+
+`Without --no-wait`
+```
+Launching Docker Container...
+done local
+Launching ACI Instance...
+done
+---------------------------------
+results:
+Local Docker Environment - 6 seconds
+ACI Environment -  128 seconds
+```
