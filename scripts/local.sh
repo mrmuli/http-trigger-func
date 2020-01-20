@@ -7,4 +7,4 @@ echo "Launching Docker Container..."
 
 sleep 2 # Allow container to be resolvable. 1 sec wasn't enough.
 
-curl http://localhost
+echo "done locally"

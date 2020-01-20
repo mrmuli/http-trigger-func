@@ -31,6 +31,7 @@
 ### Note  
 - When running the benchmark, you'll have to drop the image and containers after each run, to encourage accurate results.
 - The `--no-wait` flag has been added to all `az create` commands and has an impact on the results. The flag prevents wait for the long-running operation to finish. This however, doesn't have the container start faster. There's still an overhead of 10-20+ seconds.
+- Under the scripts path, there is an ARM template which can be used to customize your container but achieve the same goals. I.e. set a dns name or define volumes. Comment out the appropriate command in aci.sh to make use of it.
 
 
 Sample results after running `./bench`
